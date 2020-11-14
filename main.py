@@ -1,5 +1,4 @@
 from random import randint
-import keyboard
 
 def generate_bot(x):
     fist_value = randint(1, x)
@@ -9,8 +8,9 @@ def generate_bot(x):
 
 def press_key(ind1, ind2, li):
     while True:
+        input_value = input()
         try:  # used try so that if user pressed other than the given key error will not be shown
-            if keyboard.is_pressed('w'):
+            if input_value == 'w':
                 print('')
                 for index1 in range(10):
                     for index2 in range(10):
@@ -18,9 +18,11 @@ def press_key(ind1, ind2, li):
                             li[index1][index2] = '---'
                         elif (li[index1][index2] == '---') and (index1 == ind1 - 1) and (index2 == ind2):
                             li[index1][index2] = 'YYY'
+                            ind1 -= 1
+
                     print("".join(li[index1]))
-                break
-            elif keyboard.is_pressed('a'):
+                pass
+            elif input_value == 'a':
                 print('')
                 for index1 in range(10):
                     for index2 in range(10):
@@ -28,19 +30,29 @@ def press_key(ind1, ind2, li):
                             li[index1][index2] = '---'
                         elif (li[index1][index2] == '---') and (index2 == ind2 - 1) and (index1 == ind1):
                             li[index1][index2] = 'YYY'
+                            ind2 -= 1
                     print("".join(li[index1]))
-                break
-            elif keyboard.is_pressed('s'):
+                pass
+            elif input_value == 's':
                 print('')
                 for index1 in range(10):
                     for index2 in range(10):
                         if (li[index1][index2] == 'YYY'):
-                            li[index1][index2] = '---'
+                            delete_pos1 = index1
+                            delete_pos2 = index2
+
                         elif (li[index1][index2] == '---') and (index2 == ind2) and (index1 == ind1 + 1):
                             li[index1][index2] = 'YYY'
-                    print("".join(li[index1]))
-                break
-            elif keyboard.is_pressed('d'):
+                ind1 += 1
+
+                for index3 in range(10):
+                    for index4 in range(10):
+                        if li[index3][index4] == li[delete_pos1][delete_pos2]:
+                            li[index3][index4] = '---'
+                    print("".join(li[index3]))
+                pass
+
+            elif input_value == 'd':
                 print('')
                 for index1 in range(10):
                     for index2 in range(10):
@@ -48,32 +60,35 @@ def press_key(ind1, ind2, li):
                             li[index1][index2] = '---'
                         elif (li[index1][index2] == '---') and (index2 == ind2 + 1) and (index1 == ind1):
                             li[index1][index2] = 'YYY'
+
                     print("".join(li[index1]))
+                ind2 += 1
+            else:
+                print("Oops! incorrect value")
                 break
-        except:
+
+        except ValueError:
+            print("Oops!  That was no valid number.  Try again...")
             break
 
 def battleField():
     n = 10
     first_bot = generate_bot(n)
 
-    second_bot_cond = False
-    while second_bot_cond == False:
+    while True:
         second_bot = generate_bot(n)
         if second_bot != first_bot:
-            second_bot_cond = True
+            break
 
-    third_bot_cond = False
-    while third_bot_cond == False:
+    while True:
         third_bot = generate_bot(n)
         if ((third_bot != first_bot) and (second_bot != third_bot)) :
-            third_bot_cond = True
+            break
 
-    player_cond = False
-    while player_cond == False:
+    while True:
         player  = generate_bot(n)
         if ((player != first_bot) and (player != second_bot) and (player != third_bot)) :
-            player_cond = True
+            break
 
 
     li = [[0]*n for _ in range(n)]
@@ -90,7 +105,7 @@ def battleField():
                 li[i][j] = '---'
         print("".join(li[i]))
 
-    press_key(x,y,li)
+    press_key(x, y, li)
 
 battleField()
 
