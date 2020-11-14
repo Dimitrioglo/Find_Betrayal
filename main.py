@@ -18,9 +18,9 @@ def press_key(ind1, ind2, li):
                             li[index1][index2] = '---'
                         elif (li[index1][index2] == '---') and (index1 == ind1 - 1) and (index2 == ind2):
                             li[index1][index2] = 'YYY'
-                            ind1 -= 1
 
                     print("".join(li[index1]))
+                ind1 -= 1
                 pass
             elif input_value == 'a':
                 print('')
@@ -38,19 +38,12 @@ def press_key(ind1, ind2, li):
                 for index1 in range(10):
                     for index2 in range(10):
                         if (li[index1][index2] == 'YYY'):
-                            delete_pos1 = index1
-                            delete_pos2 = index2
+                            li[index1][index2] = '---'
 
                         elif (li[index1][index2] == '---') and (index2 == ind2) and (index1 == ind1 + 1):
                             li[index1][index2] = 'YYY'
+                    print("".join(li[index1]))
                 ind1 += 1
-
-                for index3 in range(10):
-                    for index4 in range(10):
-                        if li[index3][index4] == li[delete_pos1][delete_pos2]:
-                            li[index3][index4] = '---'
-                    print("".join(li[index3]))
-                pass
 
             elif input_value == 'd':
                 print('')
