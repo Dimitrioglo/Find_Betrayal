@@ -21,7 +21,6 @@ def press_key(ind1, ind2, li):
 
                     print("".join(li[index1]))
                 ind1 -= 1
-                pass
             elif input_value == 'a':
                 print('')
                 for index1 in range(10):
@@ -32,7 +31,6 @@ def press_key(ind1, ind2, li):
                             li[index1][index2] = 'YYY'
                             ind2 -= 1
                     print("".join(li[index1]))
-                pass
             elif input_value == 's':
                 print('')
                 for index1 in range(10):
@@ -44,7 +42,6 @@ def press_key(ind1, ind2, li):
                             li[index1][index2] = 'YYY'
                     print("".join(li[index1]))
                 ind1 += 1
-
             elif input_value == 'd':
                 print('')
                 for index1 in range(10):
@@ -59,7 +56,6 @@ def press_key(ind1, ind2, li):
             else:
                 print("Oops! incorrect value")
                 break
-
         except ValueError:
             print("Oops!  That was no valid number.  Try again...")
             break
